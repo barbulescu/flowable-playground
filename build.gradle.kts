@@ -2,6 +2,8 @@ plugins {
     java
     id("org.springframework.boot") version "4.0.6"
     id("io.spring.dependency-management") version "1.1.7"
+    kotlin("jvm")
+    kotlin("plugin.spring") version "2.3.21"
 }
 
 group = "com.example"
@@ -23,6 +25,7 @@ dependencies {
     testImplementation("org.testcontainers:testcontainers-jdbc:2.0.5")
     testImplementation("org.testcontainers:testcontainers-postgresql:2.0.5")
     testRuntimeOnly("org.postgresql:postgresql")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks.test {
