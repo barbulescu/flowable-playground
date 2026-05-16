@@ -15,14 +15,10 @@ class HelloDelegateTest(
     fun delegateIsTriggeredAndSetsGreetingVariable() {
         val instance = runtimeService.startProcessInstanceByKey("helloProcess")
 
-        val variable = historyService.createHistoricVariableInstanceQuery()
+        val greeting = historyService.createHistoricVariableInstanceQuery()
             .processInstanceId(instance.id)
-            .variableName("greeting")
-            .singleResult()
+            .greeting
 
-        assertThat(variable)
-            .isNotNull()
-            .extracting { it.value }
-            .isEqualTo("Hello from delegate!")
+        assertThat(greeting).isEqualTo("Hello from delegate!")
     }
 }
