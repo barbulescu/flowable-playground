@@ -2,3 +2,6 @@ spring:
   datasource:
     url: jdbc:tc:postgresql:16:///flowable
     driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+
+flowable:
+  async-executor-activate: false
