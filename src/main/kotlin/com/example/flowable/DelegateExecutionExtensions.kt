@@ -1,9 +1,9 @@
 package com.example.flowable
 
-import org.flowable.engine.delegate.DelegateExecution
-import org.flowable.variable.api.history.HistoricVariableInstanceQuery
+import org.flowable.cmmn.api.delegate.DelegatePlanItemInstance
+import org.flowable.cmmn.api.history.HistoricVariableInstanceQuery
 
-var DelegateExecution.greeting: String
+var DelegatePlanItemInstance.greeting: String
     get() = getVariable("greeting") as String
     set(value) = setVariable("greeting", value)
 

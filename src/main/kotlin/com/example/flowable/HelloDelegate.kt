@@ -1,13 +1,13 @@
 package com.example.flowable
 
-import org.flowable.engine.delegate.DelegateExecution
-import org.flowable.engine.delegate.JavaDelegate
+import org.flowable.cmmn.api.delegate.DelegatePlanItemInstance
+import org.flowable.cmmn.api.delegate.PlanItemJavaDelegate
 import org.springframework.stereotype.Component
 
 @Component
-class HelloDelegate : JavaDelegate {
+class HelloDelegate : PlanItemJavaDelegate {
 
-    override fun execute(execution: DelegateExecution) {
-        execution.greeting = "Hello from delegate!"
+    override fun execute(planItemInstance: DelegatePlanItemInstance) {
+        planItemInstance.greeting = "Hello from delegate!"
     }
 }

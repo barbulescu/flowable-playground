@@ -1,22 +1,24 @@
 package com.example.flowable
 
 import org.assertj.core.api.Assertions.assertThat
-import org.flowable.engine.HistoryService
-import org.flowable.engine.RuntimeService
+import org.flowable.cmmn.api.CmmnHistoryService
+import org.flowable.cmmn.api.CmmnRuntimeService
 import org.junit.jupiter.api.Test
 
 @IntegrationTest
 class HelloDelegateTest(
-    private val runtimeService: RuntimeService,
-    private val historyService: HistoryService,
+    private val cmmnRuntimeService: CmmnRuntimeService,
+    private val cmmnHistoryService: CmmnHistoryService,
 ) {
 
     @Test
     fun delegateIsTriggeredAndSetsGreetingVariable() {
-        val instance = runtimeService.startProcessInstanceByKey("helloProcess")
+        val instance = cmmnRuntimeService.createCaseInstanceBuilder()
+            .caseDefinitionKey("helloCase")
+            .start()
 
-        val greeting = historyService.createHistoricVariableInstanceQuery()
-            .processInstanceId(instance.id)
+        val greeting = cmmnHistoryService.createHistoricVariableInstanceQuery()
+            .caseInstanceId(instance.id)
             .greeting
 
         assertThat(greeting).isEqualTo("Hello from delegate!")
