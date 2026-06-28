@@ -11,10 +11,9 @@ import org.springframework.stereotype.Component
 class HelloCaseDeployer(private val cmmnRepositoryService: CmmnRepositoryService) : ApplicationRunner {
 
     private fun buildModel(): CmmnModel = cmmnModel {
-        case(id = "helloCase", name = "Hello Case") {
-            planModel(id = "planModel", name = "Plan Model") {
-                planItem(id = "planItem1", definitionRef = "helloTask")
-                javaServiceTask(id = "helloTask", name = "Hello Task", delegateExpression = "\${helloDelegate}")
+        case(name = "Hello Case") {
+            planModel(name = "Plan Model") {
+                javaServiceTask(name = "Hello Task", delegateExpression = "\${helloDelegate}")
             }
         }
     }
